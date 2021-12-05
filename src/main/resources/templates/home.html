@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/photos/images.png}">
+    <title>Home</title>
+</head>
+<body>
+<header>
+    <nav id="hamnav">
+        <!-- (B) THE HAMBURGER -->
+        <label for="hamburger">&#9776;</label>
+        <input type="checkbox" id="hamburger"/>
+        <div id="hamitems">
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/users/login}">Login</a></li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/users/register}">Register</a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin/statistic}">Statistic</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/hobbies/add}">Add hobby</a></li>
+            <li sec:authorize="isAuthenticated()">
+
+                <a th:href="@{/profile}">Profile</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/userinfo}">My hobbies</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/users/logout}" th:method="post">
+                    <input class="nav-link" type="submit" value="Logout">
+                </form>
+            </li>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container-fluid">
+        <h5 class="text-center text-brown mt-5">Welcome to the world of hobbies!</h5>
+    </div>
+    <span sec:authentication="name">Username</span>
+    <div class="card-group">
+        <div class="card">
+            <img class="card-img-top" th:src="@{photos/482216347x.jpg}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Music</h5>
+                <p class="card-text">If you like music, here is your place</p>
+                <button id="musicBtn" class="btn btn-primary">Go</button>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top"
+                 th:src="@{photos/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2018__06__nature-phpoto-day-squirrel-6b50719b524c4ecbb3152a32baa38367.jpg}"
+                 alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Photography</h5>
+                <p class="card-text">If you love taking pictures wherever you go, consider making a hobby out of it.
+                    You don’t need an expensive camera, you can also take good pictures with your phone.</p>
+                <button id="photographyBtn" class="btn btn-primary">Go</button>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" th:src="@{photos/_116498675_3a8f0b9b-eae1-48ab-9ff7-1f53526353b1.jpg}"
+                 alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Learn Origami</h5>
+                <p class="card-text">Origami is a beautiful art, and this low-cost hobby can help you produce beautiful
+                    decorations for your home.
+                    I know, it looks like it’s super difficult, but I promise you it’s actually quite easy if you know
+                    the
+                    tricks.</p>
+                <button id="origamiBtn" class="btn btn-primary">Go</button>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" th:src="@{photos/5b9f228e3c00005b000ad423.jpeg}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Teach Your Pet Tricks</h5>
+                <p class="card-text">If you have a pet, this can be a really enjoyable way to spend your free time.
+                    They probably already know the basic commands, so try to teach them something more challenging,
+                    like ‘play dead’.</p>
+                <button id="petsBtn" class="btn btn-primary">Go</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="div" class="card-group"></div>
+</main>
+<script th:src="@{/app/music.js}"></script>
+<script th:src="@{/app/photography.js}"></script>
+<script th:src="@{/app/origami.js}"></script>
+<script th:src="@{/app/pets.js}"></script>
+<div class="footer text-white text-center">
+    <p>© 2021 HobbyWorld. All rights reserved</p>
+</div>
+</body>
+
+</html>
