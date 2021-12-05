@@ -59,7 +59,7 @@ public class UserRegisterControllerTest {
         ).
                 andExpect(status().is3xxRedirection());
 
-        Assertions.assertEquals(1, userRepository.count());
+        Assertions.assertEquals(2, userRepository.count());
 
         Optional<User> newlyCreatedUserOpt = userRepository.findByUsername(TEST_USER_USERNAME);
 
